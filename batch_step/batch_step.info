@@ -1,0 +1,4 @@
+name = Batch Steps
+description = Módulo de teste para simular um Batch Steps
+package = Custom
+core = 7.x
