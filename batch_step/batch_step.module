@@ -2,29 +2,18 @@
 
 function batch_step_user_login(&$edit, $account)
 {
-    $usr = user_load($account->uid);
-    $firstAccess = $usr->access === "0";
-    
-    $firstAccess = true;
-    
-    //in_array("administrator",$usr->roles) &&
-    
-    if($firstAccess){
-        $batch = array(
-            'title' => 'Configurando seu site.',
-            'init_message' => "Iniciando configuração",
-            'progress_message' => t('Completed @current of @total. (@percentage%)'),
-            'operations' => array(
-                array("activate_all_modules",array()),
-                array("add_new_user", array('user@exemplo.com.br','123456')),
-                array("cache_clean", array())
-            ),
-            'finished' => "Site configurado com sucesso",
-            'file' => (drupal_get_path('module','batch_step') . DIRECTORY_SEPARATOR . 'batch_step.module')/* Arqyuvi que contem as funções que serão utilizadas em operations */
-        );
-        
-        batch_set($batch);
-    }
+    $batch = array(
+        'title' => 'Configurando seu site.',
+        'init_message' => "Iniciando configuração",
+        'progress_message' => t('Completed @current of @total. (@percentage%)'),
+        'operations' => array(
+            array("activate_all_modules",array()),
+            array("add_new_user", array('user@exemplo.com.br','123456')),
+            array("cache_clean", array())
+        ),
+        'finished' => "Site configurado com sucesso",
+        'file' => (drupal_get_path('module','batch_step') . DIRECTORY_SEPARATOR . 'batch_step.module')
+    );
 }
 
 
